@@ -35,10 +35,21 @@ const MORSE_TABLE = {
     '---..':  '8',
     '----.':  '9',
     '-----':  '0',
+    ' ':      ' ',
 };
 
 function decode(expr) {
-    // write your solution here
+    let morseSymbol = '',
+    str = '';
+    for (let i = 10 ; i <= expr.length ; i=i+10){
+      morseSymbol = expr.slice(i-10,i);
+      morseSymbol = morseSymbol.split('11').join('-');
+      morseSymbol = morseSymbol.split('10').join('.');
+      morseSymbol = morseSymbol.split('**********').join(' ');
+      morseSymbol = morseSymbol.split('0').join('');
+      str = str + MORSE_TABLE[`${morseSymbol}`];
+    }
+    return str;
 }
 
 module.exports = {
